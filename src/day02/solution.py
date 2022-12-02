@@ -35,5 +35,3 @@ def part_one():
 
 def part_two():
     return sum(map(score_round, map(determine_sign, rps_rounds)))
-
-print(part_two())
