@@ -1,0 +1,17 @@
+image:
+  file: .gitpod.dockerfile
+
+tasks:
+  - init: pip3 install -r requirements.txt
+    command: |
+      git config core.hooksPath hooks
+      find ./hooks -type f -exec chmod +x {} \;
+      export PYTHONDONTWRITEBYTECODE=1
+  
+github:
+  prebuilds:
+    master: true
+
+vscode:
+  extensions:
+    - ms-python.python

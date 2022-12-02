@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Module",
+            "type": "python",
+            "request": "launch",
+            "module": "put.module.name.here",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "PyTest",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "module": "pytest",
+            "args": [
+                "-sv"
+            ]
+        }
+    ]
+}
