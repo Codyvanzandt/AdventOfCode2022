@@ -14,7 +14,5 @@ def find_priority(item):
 
 def part_one():
     return sum(
-        1 for compartment1, compartment2 in read_input()
+        find_priority(next(iter(set(compartment1).intersection(set(compartment2))))) for compartment1, compartment2 in read_input()
     )
-
-print(part_one())
