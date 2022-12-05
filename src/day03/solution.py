@@ -4,6 +4,7 @@ PRIORITY_DICT = dict(zip(ascii_lowercase, range(1, 27))) | dict(
     zip(ascii_uppercase, range(27, 53))
 )
 
+
 def read_input():
     with open("src/day03/input.txt", "r") as input_file:
         for rucksack in input_file.readlines():

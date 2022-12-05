@@ -4,28 +4,22 @@ def read_elf_pairs():
             elf1, elf2 = elf_pair.split(",")
             yield parse_elf_range(elf1), parse_elf_range(elf2)
 
+
 def parse_elf_range(elf_range):
     start, stop = map(int, elf_range.split("-"))
-    return range(start, stop)
+    return set(range(start, stop+1))
+
 
 def do_elves_fully_overlap(elf_range1, elf_range2):
-    if (elf_range1.start <= elf_range2.start) and (elf_range1.stop >= elf_range2.stop):
-        return True
-    elif (elf_range2.start <= elf_range1.start) and (elf_range2.stop >= elf_range1.stop):
-        return True
-    else:
-        return False
+    return elf_range1.issubset(elf_range2) or elf_range2.issubset(elf_range1)
 
 def do_elves_partially_overlap(elf_range1, elf_range2):
-    if elf_range1.start <= elf_range2.stop <= elf_range1.stop:
-        return True
-    elif elf_range2.start <= elf_range1.stop <= elf_range2.stop:
-        return True
-    else:
-        return False
+    return not elf_range1.isdisjoint(elf_range2)
+
 
 def part_one():
-    return sum( (do_elves_fully_overlap(*elves) for elves in read_elf_pairs()) )
+    return sum((do_elves_fully_overlap(*elves) for elves in read_elf_pairs()))
+
 
 def part_two():
-    return sum( (do_elves_partially_overlap(*elves) for elves in read_elf_pairs()) )
+    return sum((do_elves_partially_overlap(*elves) for elves in read_elf_pairs()))
