@@ -7,11 +7,12 @@ def read_elf_pairs():
 
 def parse_elf_range(elf_range):
     start, stop = map(int, elf_range.split("-"))
-    return set(range(start, stop+1))
+    return set(range(start, stop + 1))
 
 
 def do_elves_fully_overlap(elf_range1, elf_range2):
     return elf_range1.issubset(elf_range2) or elf_range2.issubset(elf_range1)
+
 
 def do_elves_partially_overlap(elf_range1, elf_range2):
     return not elf_range1.isdisjoint(elf_range2)
