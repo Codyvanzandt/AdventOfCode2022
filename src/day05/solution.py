@@ -9,7 +9,8 @@ def get_puzzle():
 
 def parse_crate_state(crate_state_string):
     stacks = [
-        [stack[i : i + 4].strip() for i in range(0, len(stack), 4)] for stack in reversed(crate_state_string.split("\n"))
+        [stack[i : i + 4].strip() for i in range(0, len(stack), 4)]
+        for stack in reversed(crate_state_string.split("\n"))
     ]
     return stacks[1:]
 
@@ -37,7 +38,9 @@ def part_one():
         for _ in range(int(number_to_move)):
             crate = crate_state[int(move_from)].pop()
             crate_state[int(move_to)].append(crate)
-    return "".join(crate_stack[-1] for crate_stack in crate_state.values() if crate_stack)
+    return "".join(
+        crate_stack[-1] for crate_stack in crate_state.values() if crate_stack
+    )
 
 
 def part_two():
@@ -48,4 +51,6 @@ def part_two():
         for i in range(-int(number_to_move), 0, 1):
             crate = crate_state[int(move_from)].pop(i)
             crate_state[int(move_to)].append(crate)
-    return "".join(crate_stack[-1] for crate_stack in crate_state.values() if crate_stack)
+    return "".join(
+        crate_stack[-1] for crate_stack in crate_state.values() if crate_stack
+    )
