@@ -14,14 +14,19 @@ def get_view_lines_to_tree(trees, tree_i, tree_j):
     top, bottom = row[:tree_i], row[tree_i + 1 :]
     return left, list(reversed(right)), top, list(reversed(bottom))
 
+
 def get_view_lines_from_tree(trees, tree_i, tree_j):
-    return [ list(reversed(view_line)) for view_line in get_view_lines_to_tree(trees, tree_i, tree_j) ]
+    return [
+        list(reversed(view_line))
+        for view_line in get_view_lines_to_tree(trees, tree_i, tree_j)
+    ]
+
 
 def is_tree_visible(trees, tree_i, tree_j):
     tree_height = trees[tree_i][tree_j]
     tree_view_lines = get_view_lines_to_tree(trees, tree_i, tree_j)
     for view_line in tree_view_lines:
-        if all( tree_height > other_tree_height for other_tree_height in view_line ):
+        if all(tree_height > other_tree_height for other_tree_height in view_line):
             return True
     return False
 
@@ -41,13 +46,13 @@ def compute_scenic_score(trees, tree_i, tree_j):
 
 def part_one():
     trees = get_trees()
-    all_tree_indices = ( (i,j) for i in range(len(trees)) for j in range(len(trees[0])) )
-    visisble_trees = ( is_tree_visible(trees, i, j) for (i,j) in all_tree_indices )
+    all_tree_indices = ((i, j) for i in range(len(trees)) for j in range(len(trees[0])))
+    visisble_trees = (is_tree_visible(trees, i, j) for (i, j) in all_tree_indices)
     return sum(visisble_trees)
 
 
 def part_two():
     trees = get_trees()
-    all_tree_indices = ( (i,j) for i in range(len(trees)) for j in range(len(trees[0])) )
-    scenic_scores = ( compute_scenic_score(trees, i, j) for (i,j) in all_tree_indices )
+    all_tree_indices = ((i, j) for i in range(len(trees)) for j in range(len(trees[0])))
+    scenic_scores = (compute_scenic_score(trees, i, j) for (i, j) in all_tree_indices)
     return max(scenic_scores)
